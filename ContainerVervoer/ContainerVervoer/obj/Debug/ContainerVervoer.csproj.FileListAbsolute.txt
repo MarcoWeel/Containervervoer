@@ -1,0 +1,9 @@
+D:\eigenproject git\Containervervoer\ContainerVervoer\ContainerVervoer\obj\Debug\ContainerVervoer.csprojAssemblyReference.cache
+D:\eigenproject git\Containervervoer\ContainerVervoer\ContainerVervoer\obj\Debug\ContainerVervoer.Properties.Resources.resources
+D:\eigenproject git\Containervervoer\ContainerVervoer\ContainerVervoer\obj\Debug\ContainerVervoer.csproj.GenerateResource.cache
+D:\eigenproject git\Containervervoer\ContainerVervoer\ContainerVervoer\obj\Debug\ContainerVervoer.csproj.CoreCompileInputs.cache
+D:\eigenproject git\Containervervoer\ContainerVervoer\ContainerVervoer\bin\Debug\ContainerVervoer.exe.config
+D:\eigenproject git\Containervervoer\ContainerVervoer\ContainerVervoer\bin\Debug\ContainerVervoer.exe
+D:\eigenproject git\Containervervoer\ContainerVervoer\ContainerVervoer\bin\Debug\ContainerVervoer.pdb
+D:\eigenproject git\Containervervoer\ContainerVervoer\ContainerVervoer\obj\Debug\ContainerVervoer.exe
+D:\eigenproject git\Containervervoer\ContainerVervoer\ContainerVervoer\obj\Debug\ContainerVervoer.pdb
