@@ -1,4 +1,4 @@
-﻿public enum ContainerVariants
+﻿public enum ContainerVariant
 {
     Normal,
     Coolable,

@@ -15,9 +15,31 @@ namespace ContainerVervoer
             { return stacks.AsReadOnly(); }
         }
 
+
         public Row()
         {
             stacks = new List<Stack>();
+        }
+
+        public void AddStackToRow(Stack stack)
+        {
+            this.stacks.Add(stack);
+        }
+
+        public bool PlaceContainerInStackList(Container container, int index)
+        {
+            return stacks[index].TryToPlaceContainer(container);
+        }
+
+        public int GetRowWeight()
+        {
+            int weight = 0;
+            foreach (var stack in stacks)
+            {
+                weight += stack.StackWeight;
+            }
+
+            return weight;
         }
     }
 }

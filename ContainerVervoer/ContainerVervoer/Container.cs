@@ -11,12 +11,17 @@ namespace ContainerVervoer
         public int Weight { get; private set; }
         public int MaxWeight { get; } = 30000;
         public int MinWeight { get; } = 4000;
-        public ContainerVariants Variant { get; private set; }
+        public ContainerVariant Variant { get; private set; }
 
-        public Container(int weight, ContainerVariants variant)
+        public Container(int weight, ContainerVariant variant)
         {
             Weight = weight;
             Variant = variant;
+        }
+
+        public override string ToString()
+        {
+            return $"Variant: {Variant}, Weight: {Weight}";
         }
     }
 }

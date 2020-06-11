@@ -3,23 +3,67 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms.VisualStyles;
 
 namespace ContainerVervoer
 {
     public class Stack
     {
         private List<Container> containers;
+
         public IReadOnlyCollection<Container> Containers
         {
-            get
-            { return containers.AsReadOnly(); }
+            get { return containers.AsReadOnly(); }
         }
 
         public int MaxWeight { get; } = 150000;
+        public int StackWeight { get; private set; }
 
         public Stack()
         {
             containers = new List<Container>();
+        }
+
+        public bool TryToPlaceContainer(Container container)
+        {
+            if (MaxWeight > StackWeight + container.Weight)
+            {
+                if (CanFitOnTop())
+                {
+                    if (containers.Count > 0)
+                    {
+                        if (120000 > containers.Skip(1).Sum(x => x.Weight) + container.Weight)
+                        {
+                            AddContainer(container);
+                            return true;
+                        }
+                    }
+                    else
+                    {
+                        AddContainer(container);
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        private bool CanFitOnTop()
+        {
+            if (containers.LastOrDefault().Variant == ContainerVariant.Valuable && containers.LastOrDefault().Variant == ContainerVariant.CoolableAndValuable)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private void AddContainer(Container container)
+        {
+            containers.Add(container);
+            StackWeight += container.Weight;
         }
     }
 }

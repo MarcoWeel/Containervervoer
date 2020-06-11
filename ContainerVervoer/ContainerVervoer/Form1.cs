@@ -15,6 +15,17 @@ namespace ContainerVervoer
         public Form1()
         {
             InitializeComponent();
+            CBType.DataSource = Enum.GetValues(typeof(ContainerVariant));
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            LBContainers.Items.Add(new Container(Convert.ToInt32(NumericWeight.Value), (ContainerVariant)CBType.SelectedItem));
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            
         }
     }
 }
