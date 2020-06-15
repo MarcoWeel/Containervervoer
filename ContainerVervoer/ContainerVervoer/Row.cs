@@ -21,9 +21,13 @@ namespace ContainerVervoer
             stacks = new List<Stack>();
         }
 
-        public void AddStackToRow(Stack stack)
+        public void AddEmptyStackToRow(Stack stack)
         {
-            this.stacks.Add(stack);
+            if (stack.Containers.Count != 0)
+            {
+                throw new ArgumentException("Cannot place stack with containers");
+            }
+            stacks.Add(stack);
         }
 
         public bool TryToPlaceContainerInStackList(Container container, int index)
@@ -117,7 +121,27 @@ namespace ContainerVervoer
 
         public void SortStacksByHeight()
         {
-           stacks = stacks.OrderBy(x => x != stacks[0]).ThenBy(y => y.Height).ToList();
+            bool hasCoolable = false;
+            foreach (var stack in Stacks)
+            {
+                foreach (var container in stack.Containers)
+                {
+                    if (container.Variant == ContainerVariant.Coolable || container.Variant == ContainerVariant.CoolableAndValuable)
+                    {
+                        hasCoolable = true;
+                    }
+                }
+            }
+
+            if (hasCoolable)
+            {
+                stacks = stacks.Take(1).Concat(stacks.Skip(1).OrderByDescending(x => x.Height)).ToList();
+            }
+            else
+            {
+                stacks = stacks.OrderByDescending(x => x.Height).ToList();
+            }
+           
         }
     }
 }

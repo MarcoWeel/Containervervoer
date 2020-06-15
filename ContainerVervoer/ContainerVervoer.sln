@@ -5,6 +5,11 @@ VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContainerVervoer", "ContainerVervoer\ContainerVervoer.csproj", "{68DF0D06-1FBD-405E-B97B-E3E65BF8F897}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContainerVervoer.Tests", "ContainerVervoer.Tests\ContainerVervoer.Tests.csproj", "{F56EFB90-705E-4FA2-9C12-1EA347D829BC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{68DF0D06-1FBD-405E-B97B-E3E65BF8F897} = {68DF0D06-1FBD-405E-B97B-E3E65BF8F897}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +20,10 @@ Global
 		{68DF0D06-1FBD-405E-B97B-E3E65BF8F897}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68DF0D06-1FBD-405E-B97B-E3E65BF8F897}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68DF0D06-1FBD-405E-B97B-E3E65BF8F897}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F56EFB90-705E-4FA2-9C12-1EA347D829BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F56EFB90-705E-4FA2-9C12-1EA347D829BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F56EFB90-705E-4FA2-9C12-1EA347D829BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F56EFB90-705E-4FA2-9C12-1EA347D829BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

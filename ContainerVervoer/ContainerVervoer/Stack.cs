@@ -27,13 +27,13 @@ namespace ContainerVervoer
 
         public bool TryToPlaceContainer(Container container)
         {
-            if (MaxWeight > Weight + container.Weight)
+            if (MaxWeight >= Weight + container.Weight)
             {
                 if (containers.Count != 0)
                 {
                     if (CanFitOnTop())
                     {
-                        if (120000 > containers.Skip(1).Sum(x => x.Weight) + container.Weight)
+                        if (120000 >= containers.Skip(1).Sum(x => x.Weight) + container.Weight)
                         {
                             AddContainer(container);
                             return true;

@@ -8,27 +8,12 @@ namespace ContainerVervoer
 {
     public class Ship
     {
-        private List<Row> rowsLeft;
-        public IReadOnlyCollection<Row> RowsLeft
-        {
-            get
-            { return rowsLeft.AsReadOnly(); }
-        }
-        private List<Row> rowsRight;
-        public IReadOnlyCollection<Row> RowsRight
-        {
-            get
-            { return rowsRight.AsReadOnly(); }
-        }
+        private List<Row> rows;
 
-        public Row rowMiddle { get; private set; }
-
-        private List<Row> rowsTemp;
-
-        public IReadOnlyCollection<Row> RowsTemp
+        public IReadOnlyCollection<Row> Rows
         {
             get 
-            { return rowsTemp.AsReadOnly(); }
+            { return rows.AsReadOnly(); }
         }
 
         public int Width { get; private set; }
@@ -41,62 +26,23 @@ namespace ContainerVervoer
         {
             Width = width;
             Length = length;
-            rowsLeft = new List<Row>();
-            rowsRight = new List<Row>();
-            rowsTemp = new List<Row>();
-            if (width % 2 == 1)
-            {
-                rowMiddle = new Row();
-            }
-
+            rows = new List<Row>();
         }
 
-        public void AddLeftRowsToShip(List<Row> rows)
+        private void AddRowsToShip(List<Row> rows)
         {
-            //rowsLeft.AddRange(rows);
-            rowsTemp.AddRange(rows);
+            this.rows.AddRange(rows);
         }
 
-        private void AddRightRowsToShip(List<Row> rows)
-        {
-            rowsRight.AddRange(rows);
-        }
-
-        private void AddMiddleRowToShip(Row row)
-        {
-            rowMiddle = row;
-        }
-
-        public bool CheckWeightOfRowsAndAddToShip(List<Row> rowsLeft, List<Row> rowsRight)
+        public bool CheckWeightOfRowsAndAddToShip(List<Row> rows)
         {
             int weight = 0;
-            for (int i = 0; i < rowsLeft.Count; i++)
+            foreach (var row in rows)
             {
-                weight += rowsLeft[i].GetRowWeight();
-                weight += rowsRight[i].GetRowWeight();
+                weight += row.GetRowWeight();
             }
 
-            if (weight > MaxWeight)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-
-        public bool CheckWeightOfRowsAndAddToShip(List<Row> rowsLeft, List<Row> rowsRight, Row rowMiddle)
-        {
-            int weight = 0;
-            for (int i = 0; i < rowsLeft.Count; i++)
-            {
-                weight += rowsLeft[i].GetRowWeight();
-                weight += rowsRight[i].GetRowWeight();
-            }
-
-            weight += rowMiddle.GetRowWeight();
-            if (weight > MaxWeight)
+            if (weight > MaxWeight || weight < MinWeight)
             {
                 return false;
             }

@@ -34,16 +34,20 @@ namespace ContainerVervoer
                 MessageBox.Show("Voeg eerst containers toe");
                 return;
             }
-            try
+
+            if (ship.Width != 0)
             {
-                ship.AddLeftRowsToShip(ContainerSorter.SortContainersIntoRows(ship.Width, ship.Length, containers));
+                bool success = ship.CheckWeightOfRowsAndAddToShip(ContainerSorter.SortContainersIntoRows(ship.Width, ship.Length, containers));
                 TBURL.Text = ShipToURL.ShipToUrl(ship);
+                if (success == false)
+                {
+                    throw new ArgumentException("Weight is too high or too low");
+                }
             }
-            catch (Exception exception)
+            else
             {
                 MessageBox.Show("Creëer eerst een ship");
             }
-
         }
 
         private void button1_Click_2(object sender, EventArgs e)

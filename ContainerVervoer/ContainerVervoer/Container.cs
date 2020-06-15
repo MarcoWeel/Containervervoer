@@ -15,6 +15,15 @@ namespace ContainerVervoer
 
         public Container(int weight, ContainerVariant variant)
         {
+            if (weight > MaxWeight)
+            {
+                throw new ArgumentException("Weight of container is too high");
+            }
+
+            if (weight < MinWeight)
+            {
+                throw new ArgumentException("Weight of container is too low");
+            }
             Weight = weight;
             Variant = variant;
         }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ContainerVervoer
 {
@@ -59,10 +58,14 @@ namespace ContainerVervoer
                 }
                 if (Index > rows.Count - 1)
                 {
-                    MessageBox.Show("Kan containers niet balanceren");
-                    break;
+                    throw new ArgumentException("Can't balance containers");
                 }
                 difference = GetBalanceDifference(rows);
+            }
+
+            if (newRowArray[0] == null)
+            {
+                return rows;
             }
             return newRowArray.ToList();
         }

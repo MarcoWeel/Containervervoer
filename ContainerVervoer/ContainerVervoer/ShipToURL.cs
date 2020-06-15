@@ -16,7 +16,7 @@ namespace ContainerVervoer
             int rowIndex = 0;
             int stackIndex = 0;
 
-            foreach (var row in ship.RowsTemp)
+            foreach (var row in ship.Rows)
             {
                 foreach (var stack in row.Stacks)
                 {

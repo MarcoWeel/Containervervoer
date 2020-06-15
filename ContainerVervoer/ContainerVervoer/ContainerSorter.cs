@@ -4,7 +4,6 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ContainerVervoer
 {
@@ -29,7 +28,7 @@ namespace ContainerVervoer
                 rows.Add(new Row());
                 for (int j = 0; j < shipLength; j++)
                 {
-                    rows[i].AddStackToRow(new Stack());
+                    rows[i].AddEmptyStackToRow(new Stack());
                 }
             }
             return rows;
@@ -97,8 +96,8 @@ namespace ContainerVervoer
 
             if (placed != containers.Count)
             {
-                MessageBox.Show("Kan valuable en coolable containers niet plaatsen");
-                throw new System.ArgumentException("Kan valuable en coolable containers niet plaatsen");
+                //MessageBox.Show("Kan valuable en coolable containers niet plaatsen");
+                throw new ArgumentException("Kan valuable en coolable containers niet plaatsen");
             }
 
             return rows;
@@ -128,10 +127,9 @@ namespace ContainerVervoer
                     stackIndex = 0;
                 }
 
-                if (rowIndex > rows.Count - 1)
+                if (rowIndex > rows.Count - 1 && i != containers.Count)
                 {
-                    MessageBox.Show("Kan valuable containers niet plaatsen");
-                    throw new System.ArgumentException("Kan valuable containers niet plaatsen");
+                    throw new ArgumentException("Kan valuable containers niet plaatsen");
                 }
             }
             return rows;
