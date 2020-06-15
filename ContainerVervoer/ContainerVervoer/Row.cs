@@ -26,9 +26,24 @@ namespace ContainerVervoer
             this.stacks.Add(stack);
         }
 
-        public bool PlaceContainerInStackList(Container container, int index)
+        public bool TryToPlaceContainerInStackList(Container container, int index)
         {
-            return stacks[index].TryToPlaceContainer(container);
+            if (container.Variant == ContainerVariant.Valuable)
+            {
+                if (CheckIfReachable(index, stacks[index].Height))
+                {
+                    return stacks[index].TryToPlaceContainer(container);
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return stacks[index].TryToPlaceContainer(container);
+            }
+
         }
 
         public int GetRowWeight()
@@ -36,10 +51,73 @@ namespace ContainerVervoer
             int weight = 0;
             foreach (var stack in stacks)
             {
-                weight += stack.StackWeight;
+                weight += stack.Weight;
             }
 
             return weight;
+        }
+
+        public int GetMinRowHeight()
+        {
+            int minHeight = 100;
+            foreach (var stack in stacks)
+            {
+                if (stack.Height < minHeight)
+                {
+                    minHeight = stack.Height;
+                }
+            }
+
+            return minHeight;
+        }
+
+        private bool CheckIfReachable(int index, int height)
+        {
+            int maxStackHeightFront = 0;
+            int maxStackHeightBehind = 0;
+            if (index == stacks.Count - 1)
+            {
+                return true;
+            }
+            else if (index == 0)
+            {
+                return true;
+            }
+            else
+            {
+                for (int i = 0; i < index + 1; i++)
+                {
+                    if (stacks[i].Height > maxStackHeightFront)
+                    {
+                        maxStackHeightFront = stacks[i].Height;
+                    }
+                }
+
+                if (index != stacks.Count)
+                {
+                    for (int i = 0; i < stacks.Count - index; i++)
+                    {
+                        if (stacks[i].Height > maxStackHeightBehind)
+                        {
+                            maxStackHeightBehind = stacks[i].Height;
+                        }
+                    }
+                }
+
+                if (maxStackHeightBehind <= height || maxStackHeightFront <= height)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public void SortStacksByHeight()
+        {
+           stacks = stacks.OrderBy(x => x != stacks[0]).ThenBy(y => y.Height).ToList();
         }
     }
 }

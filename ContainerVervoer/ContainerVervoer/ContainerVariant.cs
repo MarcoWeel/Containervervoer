@@ -1,7 +1,7 @@
 ﻿public enum ContainerVariant
 {
     Normal,
-    Coolable,
     Valuable,
+    Coolable,
     CoolableAndValuable
 }

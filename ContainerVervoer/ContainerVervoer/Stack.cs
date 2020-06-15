@@ -17,7 +17,8 @@ namespace ContainerVervoer
         }
 
         public int MaxWeight { get; } = 150000;
-        public int StackWeight { get; private set; }
+        public int Weight { get; private set; }
+        public int Height { get; private set; }
 
         public Stack()
         {
@@ -26,11 +27,11 @@ namespace ContainerVervoer
 
         public bool TryToPlaceContainer(Container container)
         {
-            if (MaxWeight > StackWeight + container.Weight)
+            if (MaxWeight > Weight + container.Weight)
             {
-                if (CanFitOnTop())
+                if (containers.Count != 0)
                 {
-                    if (containers.Count > 0)
+                    if (CanFitOnTop())
                     {
                         if (120000 > containers.Skip(1).Sum(x => x.Weight) + container.Weight)
                         {
@@ -38,11 +39,11 @@ namespace ContainerVervoer
                             return true;
                         }
                     }
-                    else
-                    {
-                        AddContainer(container);
-                        return true;
-                    }
+                }
+                else
+                {
+                    AddContainer(container);
+                    return true;
                 }
             }
             return false;
@@ -50,7 +51,7 @@ namespace ContainerVervoer
 
         private bool CanFitOnTop()
         {
-            if (containers.LastOrDefault().Variant == ContainerVariant.Valuable && containers.LastOrDefault().Variant == ContainerVariant.CoolableAndValuable)
+            if (containers.ToArray().Last().Variant == ContainerVariant.Valuable || containers.ToArray().Last().Variant == ContainerVariant.CoolableAndValuable)
             {
                 return false;
             }
@@ -58,12 +59,15 @@ namespace ContainerVervoer
             {
                 return true;
             }
+
         }
 
         private void AddContainer(Container container)
         {
             containers.Add(container);
-            StackWeight += container.Weight;
+            Weight += container.Weight;
+            Height += 1;
         }
+
     }
 }

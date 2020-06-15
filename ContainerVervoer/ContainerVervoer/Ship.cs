@@ -23,6 +23,14 @@ namespace ContainerVervoer
 
         public Row rowMiddle { get; private set; }
 
+        private List<Row> rowsTemp;
+
+        public IReadOnlyCollection<Row> RowsTemp
+        {
+            get 
+            { return rowsTemp.AsReadOnly(); }
+        }
+
         public int Width { get; private set; }
         public int Length { get; private set; }
         public int MaxWeight => Length * Width * 150000;
@@ -35,6 +43,7 @@ namespace ContainerVervoer
             Length = length;
             rowsLeft = new List<Row>();
             rowsRight = new List<Row>();
+            rowsTemp = new List<Row>();
             if (width % 2 == 1)
             {
                 rowMiddle = new Row();
@@ -42,9 +51,10 @@ namespace ContainerVervoer
 
         }
 
-        private void AddLeftRowsToShip(List<Row> rows)
+        public void AddLeftRowsToShip(List<Row> rows)
         {
-            rowsLeft.AddRange(rows);
+            //rowsLeft.AddRange(rows);
+            rowsTemp.AddRange(rows);
         }
 
         private void AddRightRowsToShip(List<Row> rows)
