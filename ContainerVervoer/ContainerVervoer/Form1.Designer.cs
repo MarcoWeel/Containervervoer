@@ -35,7 +35,7 @@
             this.LBLShipMaxWeight = new System.Windows.Forms.Label();
             this.LBLShipMinWeight = new System.Windows.Forms.Label();
             this.TBURL = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.LBLBalance = new System.Windows.Forms.Label();
             this.BtnSortContainers = new System.Windows.Forms.Button();
             this.NumericLength = new System.Windows.Forms.NumericUpDown();
             this.BtnCreateShip = new System.Windows.Forms.Button();
@@ -44,9 +44,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.LBLContainerWeight = new System.Windows.Forms.Label();
             this.BtnClear = new System.Windows.Forms.Button();
+            this.NumericContainerAmount = new System.Windows.Forms.NumericUpDown();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.NumericWeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumericLength)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumericWidth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumericContainerAmount)).BeginInit();
             this.SuspendLayout();
             // 
             // BTNAddContainer
@@ -65,7 +69,7 @@
             this.LBContainers.ItemHeight = 16;
             this.LBContainers.Location = new System.Drawing.Point(12, 12);
             this.LBContainers.Name = "LBContainers";
-            this.LBContainers.Size = new System.Drawing.Size(325, 340);
+            this.LBContainers.Size = new System.Drawing.Size(325, 324);
             this.LBContainers.TabIndex = 1;
             // 
             // CBType
@@ -101,20 +105,20 @@
             // LBLShipMaxWeight
             // 
             this.LBLShipMaxWeight.AutoSize = true;
-            this.LBLShipMaxWeight.Location = new System.Drawing.Point(531, 299);
+            this.LBLShipMaxWeight.Location = new System.Drawing.Point(472, 79);
             this.LBLShipMaxWeight.Name = "LBLShipMaxWeight";
-            this.LBLShipMaxWeight.Size = new System.Drawing.Size(129, 17);
+            this.LBLShipMaxWeight.Size = new System.Drawing.Size(132, 17);
             this.LBLShipMaxWeight.TabIndex = 4;
-            this.LBLShipMaxWeight.Text = "Ship Max Weight: 0";
+            this.LBLShipMaxWeight.Text = "Ship Max gewicht: 0";
             // 
             // LBLShipMinWeight
             // 
             this.LBLShipMinWeight.AutoSize = true;
-            this.LBLShipMinWeight.Location = new System.Drawing.Point(531, 317);
+            this.LBLShipMinWeight.Location = new System.Drawing.Point(472, 97);
             this.LBLShipMinWeight.Name = "LBLShipMinWeight";
-            this.LBLShipMinWeight.Size = new System.Drawing.Size(126, 17);
+            this.LBLShipMinWeight.Size = new System.Drawing.Size(129, 17);
             this.LBLShipMinWeight.TabIndex = 5;
-            this.LBLShipMinWeight.Text = "Ship Min Weight: 0";
+            this.LBLShipMinWeight.Text = "Ship Min gewicht: 0";
             // 
             // TBURL
             // 
@@ -124,14 +128,14 @@
             this.TBURL.TabIndex = 6;
             this.TBURL.Text = "Ship URL";
             // 
-            // label1
+            // LBLBalance
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(531, 334);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(128, 17);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Ship Balance: 0 - 0";
+            this.LBLBalance.AutoSize = true;
+            this.LBLBalance.Location = new System.Drawing.Point(476, 418);
+            this.LBLBalance.Name = "LBLBalance";
+            this.LBLBalance.Size = new System.Drawing.Size(128, 17);
+            this.LBLBalance.TabIndex = 7;
+            this.LBLBalance.Text = "Ship Balance: 0 - 0";
             // 
             // BtnSortContainers
             // 
@@ -145,7 +149,7 @@
             // 
             // NumericLength
             // 
-            this.NumericLength.Location = new System.Drawing.Point(405, 294);
+            this.NumericLength.Location = new System.Drawing.Point(346, 74);
             this.NumericLength.Minimum = new decimal(new int[] {
             1,
             0,
@@ -162,7 +166,7 @@
             // 
             // BtnCreateShip
             // 
-            this.BtnCreateShip.Location = new System.Drawing.Point(405, 322);
+            this.BtnCreateShip.Location = new System.Drawing.Point(346, 102);
             this.BtnCreateShip.Name = "BtnCreateShip";
             this.BtnCreateShip.Size = new System.Drawing.Size(120, 30);
             this.BtnCreateShip.TabIndex = 10;
@@ -172,7 +176,7 @@
             // 
             // NumericWidth
             // 
-            this.NumericWidth.Location = new System.Drawing.Point(405, 252);
+            this.NumericWidth.Location = new System.Drawing.Point(346, 32);
             this.NumericWidth.Minimum = new decimal(new int[] {
             1,
             0,
@@ -190,7 +194,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(402, 232);
+            this.label2.Location = new System.Drawing.Point(343, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 17);
             this.label2.TabIndex = 12;
@@ -199,7 +203,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(402, 277);
+            this.label3.Location = new System.Drawing.Point(343, 57);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(84, 17);
             this.label3.TabIndex = 13;
@@ -208,11 +212,11 @@
             // LBLContainerWeight
             // 
             this.LBLContainerWeight.AutoSize = true;
-            this.LBLContainerWeight.Location = new System.Drawing.Point(137, 355);
+            this.LBLContainerWeight.Location = new System.Drawing.Point(216, 359);
             this.LBLContainerWeight.Name = "LBLContainerWeight";
-            this.LBLContainerWeight.Size = new System.Drawing.Size(133, 17);
+            this.LBLContainerWeight.Size = new System.Drawing.Size(136, 17);
             this.LBLContainerWeight.TabIndex = 14;
-            this.LBLContainerWeight.Text = "Container Weight: 0";
+            this.LBLContainerWeight.Text = "Container gewicht: 0";
             // 
             // BtnClear
             // 
@@ -224,11 +228,49 @@
             this.BtnClear.UseVisualStyleBackColor = true;
             this.BtnClear.Click += new System.EventHandler(this.button1_Click_2);
             // 
+            // NumericContainerAmount
+            // 
+            this.NumericContainerAmount.Location = new System.Drawing.Point(138, 357);
+            this.NumericContainerAmount.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NumericContainerAmount.Name = "NumericContainerAmount";
+            this.NumericContainerAmount.Size = new System.Drawing.Size(72, 22);
+            this.NumericContainerAmount.TabIndex = 16;
+            this.NumericContainerAmount.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 337);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(58, 17);
+            this.label4.TabIndex = 17;
+            this.label4.Text = "Gewicht";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(134, 339);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(128, 17);
+            this.label5.TabIndex = 18;
+            this.label5.Text = "hoeveel containers";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.NumericContainerAmount);
             this.Controls.Add(this.BtnClear);
             this.Controls.Add(this.LBLContainerWeight);
             this.Controls.Add(this.label3);
@@ -237,7 +279,6 @@
             this.Controls.Add(this.BtnCreateShip);
             this.Controls.Add(this.NumericLength);
             this.Controls.Add(this.BtnSortContainers);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.TBURL);
             this.Controls.Add(this.LBLShipMinWeight);
             this.Controls.Add(this.LBLShipMaxWeight);
@@ -245,11 +286,13 @@
             this.Controls.Add(this.CBType);
             this.Controls.Add(this.LBContainers);
             this.Controls.Add(this.BTNAddContainer);
+            this.Controls.Add(this.LBLBalance);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.NumericWeight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumericLength)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumericWidth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumericContainerAmount)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -264,7 +307,7 @@
         private System.Windows.Forms.Label LBLShipMaxWeight;
         private System.Windows.Forms.Label LBLShipMinWeight;
         private System.Windows.Forms.TextBox TBURL;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label LBLBalance;
         private System.Windows.Forms.Button BtnSortContainers;
         private System.Windows.Forms.NumericUpDown NumericLength;
         private System.Windows.Forms.Button BtnCreateShip;
@@ -273,6 +316,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label LBLContainerWeight;
         private System.Windows.Forms.Button BtnClear;
+        private System.Windows.Forms.NumericUpDown NumericContainerAmount;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
     }
 }
 

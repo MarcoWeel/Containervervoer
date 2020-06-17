@@ -48,6 +48,7 @@ namespace ContainerVervoer
             }
             else
             {
+                AddRowsToShip(rows);
                 return true;
             }
         }

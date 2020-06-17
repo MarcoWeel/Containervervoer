@@ -69,5 +69,11 @@ namespace ContainerVervoer
             Height += 1;
         }
 
+        public void RemoveLastContainer()
+        {
+            containers.RemoveAt(containers.Count - 1);
+            Weight -= containers.Last().Weight;
+            Height -= 1;
+        }
     }
 }

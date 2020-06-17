@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -36,7 +37,14 @@ namespace ContainerVervoer
             {
                 if (CheckIfReachable(index, stacks[index].Height))
                 {
-                    return stacks[index].TryToPlaceContainer(container);
+                    if (CheckIfOtherStillReachable(index))
+                    {
+                        return stacks[index].TryToPlaceContainer(container);
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
                 else
                 {
@@ -48,6 +56,23 @@ namespace ContainerVervoer
                 return stacks[index].TryToPlaceContainer(container);
             }
 
+        }
+
+        public bool TryToPlaceContainerInStackList(Container container, int index, bool isAlreadyChecking)
+        {
+            if (isAlreadyChecking)
+            {
+                if (CheckIfReachable(index, stacks[index].Height))
+                {
+                    return stacks[index].TryToPlaceContainer(container);
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         public int GetRowWeight()
@@ -99,7 +124,7 @@ namespace ContainerVervoer
 
                 if (index != stacks.Count)
                 {
-                    for (int i = 0; i < stacks.Count - index; i++)
+                    for (int i = stacks.Count - 1; i >= index; i--)
                     {
                         if (stacks[i].Height > maxStackHeightBehind)
                         {
@@ -116,6 +141,72 @@ namespace ContainerVervoer
                 {
                     return false;
                 }
+            }
+        }
+
+        private bool CheckIfOtherStillReachable(int index)
+        {
+            bool hasValuable = false;
+            foreach (var stack in stacks)
+            {
+                foreach (var container in stack.Containers)
+                {
+                    if (container.Variant == ContainerVariant.CoolableAndValuable || container.Variant == ContainerVariant.Valuable)
+                    {
+                        hasValuable = true;
+                    }
+                }
+            }
+
+            if (hasValuable)
+            {
+                bool isStillReachable = true;
+                Row tempRow = new Row();
+
+                foreach (var stack in stacks)
+                {
+                    tempRow.AddEmptyStackToRow(new Stack());
+                    foreach (var container in stack.Containers)
+                    {
+                        tempRow.Stacks.Last().TryToPlaceContainer(new Container(container.Weight, container.Variant));
+                    }
+
+                }
+                List<int> stackIndexes = new List<int>();
+                List<int> stackHeights = new List<int>();
+                for (int i = 0; i < stacks.Count; i++)
+                {
+                    for (int j = 0; j < stacks[i].Containers.Count; j++)
+                    {
+                        if (stacks[i].Containers.ElementAt(j).Variant == ContainerVariant.Valuable || stacks[i].Containers.ElementAt(j).Variant == ContainerVariant.CoolableAndValuable)
+                        {
+                            stackIndexes.Add(i);
+                            stackHeights.Add(stacks[i].Height);
+                        }
+                    }
+                }
+
+                for (int i = 0; i < stackIndexes.Count; i++)
+                {
+                    tempRow.Stacks.ElementAt(stackIndexes[i]).RemoveLastContainer();
+                }
+
+                tempRow.Stacks.ElementAt(index).TryToPlaceContainer(new Container(4000, ContainerVariant.Valuable));
+                for (int i = 0; i < stackIndexes.Count; i++)
+                {
+                    bool isplaced = tempRow.TryToPlaceContainerInStackList(new Container(4000, ContainerVariant.Valuable), stackIndexes[i], true);
+                    if (isplaced == false)
+                    {
+                        isStillReachable = false;
+                    }
+                }
+
+
+                return isStillReachable;
+            }
+            else
+            {
+                return true;
             }
         }
 
@@ -141,7 +232,6 @@ namespace ContainerVervoer
             {
                 stacks = stacks.OrderByDescending(x => x.Height).ToList();
             }
-           
         }
     }
 }

@@ -75,11 +75,11 @@ namespace ContainerVervoer
         private static List<Row> SortValuableAndCoolableContainers(List<Container> containers, List<Row> rows)
         {
             int index = 0;
-            bool CanPlace = true;
+            bool canPlace = true;
             int placed = 0;
             foreach (var container in containers)
             {
-                CanPlace = rows[index].TryToPlaceContainerInStackList(container, 0);
+                canPlace = rows.OrderBy(x => x.Stacks.ElementAt(0).Height).ElementAt(0).TryToPlaceContainerInStackList(container, 0);
                 if (index < rows.Count - 1)
                 {
                     index++;
@@ -88,7 +88,7 @@ namespace ContainerVervoer
                 {
                     index = 0;
                 }
-                if (CanPlace)
+                if (canPlace)
                 {
                     placed++;
                 }
@@ -96,7 +96,6 @@ namespace ContainerVervoer
 
             if (placed != containers.Count)
             {
-                //MessageBox.Show("Kan valuable en coolable containers niet plaatsen");
                 throw new ArgumentException("Kan valuable en coolable containers niet plaatsen");
             }
 
@@ -113,6 +112,7 @@ namespace ContainerVervoer
                 {
                     i++;
                 }
+
                 if (stackIndex == rows[0].Stacks.Count - 1)
                 {
                     rowIndex++;
@@ -126,7 +126,6 @@ namespace ContainerVervoer
                 {
                     stackIndex = 0;
                 }
-
                 if (rowIndex > rows.Count - 1 && i != containers.Count)
                 {
                     throw new ArgumentException("Kan valuable containers niet plaatsen");

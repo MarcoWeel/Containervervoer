@@ -49,13 +49,13 @@ namespace ContainerVervoer.Tests
             row.TryToPlaceContainerInStackList(new Container(4000, ContainerVariant.Normal), 2);
             row.TryToPlaceContainerInStackList(new Container(4000, ContainerVariant.Normal), 2);
             row.TryToPlaceContainerInStackList(new Container(4000, ContainerVariant.Valuable), 2);
-
+            
             Assert.AreEqual(3, row.Stacks.First().Containers.Count);
-            Assert.AreEqual(2, row.Stacks.ElementAt(1).Containers.Count);
-            Assert.AreEqual(3, row.Stacks.ElementAt(2).Containers.Count);
+            Assert.AreEqual(3, row.Stacks.ElementAt(1).Containers.Count);
+            Assert.AreEqual(2, row.Stacks.ElementAt(2).Containers.Count);
             Assert.AreEqual(ContainerVariant.Valuable, row.Stacks.First().Containers.Last().Variant);
-            Assert.AreEqual(ContainerVariant.Normal, row.Stacks.ElementAt(1).Containers.Last().Variant);
-            Assert.AreEqual(ContainerVariant.Valuable, row.Stacks.ElementAt(2).Containers.Last().Variant);
+            Assert.AreEqual(ContainerVariant.Valuable, row.Stacks.ElementAt(1).Containers.Last().Variant);
+            Assert.AreEqual(ContainerVariant.Normal, row.Stacks.ElementAt(2).Containers.Last().Variant);
         }
 
         [TestMethod]
@@ -106,14 +106,17 @@ namespace ContainerVervoer.Tests
         {
             row.AddEmptyStackToRow(new Stack());
             row.AddEmptyStackToRow(new Stack());
-            row.TryToPlaceContainerInStackList(new Container(30000, ContainerVariant.Normal), 0);
-            row.TryToPlaceContainerInStackList(new Container(15000, ContainerVariant.Normal), 0);
-            row.TryToPlaceContainerInStackList(new Container(30000, ContainerVariant.Coolable), 1);
+            row.AddEmptyStackToRow(new Stack());
+            row.TryToPlaceContainerInStackList(new Container(30000, ContainerVariant.Normal), 2);
+            row.TryToPlaceContainerInStackList(new Container(15000, ContainerVariant.Normal), 2);
+            row.TryToPlaceContainerInStackList(new Container(15000, ContainerVariant.Normal), 1);
+            row.TryToPlaceContainerInStackList(new Container(30000, ContainerVariant.Coolable), 0);
 
             row.SortStacksByHeight();
 
             Assert.AreEqual(1, row.Stacks.ElementAt(0).Height);
             Assert.AreEqual(2, row.Stacks.ElementAt(1).Height);
+            Assert.AreEqual(1, row.Stacks.ElementAt(2).Height);
         }
     }
 }
