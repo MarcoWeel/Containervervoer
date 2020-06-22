@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ContainerVervoer.websocket;
 
 namespace ContainerVervoer
 {
@@ -15,11 +16,13 @@ namespace ContainerVervoer
         private Ship ship;
         private List<Container> containers;
         private int weight = 0;
+        FleckWebSocketServer webSocketServer; 
         public Form1()
         {
             InitializeComponent();
             CBType.DataSource = Enum.GetValues(typeof(ContainerVariant));
             containers = new List<Container>();
+            webSocketServer = new FleckWebSocketServer("127.0.0.1", "8181");
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -41,12 +44,33 @@ namespace ContainerVervoer
                 return;
             }
 
-            if (ship.Width != 0)
+            if (ship != null)
             {
+                ship = new Ship(ship.Width, ship.Length);
                 bool success = ship.CheckWeightOfRowsAndAddToShip(ContainerSorter.SortContainersIntoRows(ship.Width, ship.Length, containers));
-                TBURL.Text = ShipToURL.ShipToUrl(ship);
+                var output = ShipToURL.ShipToUrl(ship);
+                TBURL.Text = output;
                 double balance = ContainerBalancer.GetBalanceDifference(ship.Rows.ToList());
                 LBLBalance.Text = "Ship Balance difference: " + balance;
+                if (webSocketServer.Sockets.Any())
+                {
+                    foreach (var socket in webSocketServer.Sockets)
+                    {
+                        socket.Send(TBURL.Text);
+                    }
+                    return;
+                }
+                var confirmResult = MessageBox.Show("Open ship visualizer in new browser tab?",
+                    "Open visualizer!",
+                    MessageBoxButtons.YesNo);
+                if (confirmResult == DialogResult.Yes)
+                {
+                    System.Diagnostics.Process.Start(output);
+                }
+                foreach (var socket in webSocketServer.Sockets)
+                {
+                    socket.Send(TBURL.Text);
+                }
                 if (success == false)
                 {
                     throw new ArgumentException("Weight is too high or too low");
@@ -62,6 +86,7 @@ namespace ContainerVervoer
         {
             LBContainers.Items.Clear();
             containers.Clear();
+            LBLContainerWeight.Text = "Container gewicht: 0";
             ship = new Ship((int)NumericWidth.Value, (int)NumericLength.Value);
         }
 

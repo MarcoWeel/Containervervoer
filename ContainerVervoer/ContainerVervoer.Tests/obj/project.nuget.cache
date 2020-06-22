@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "H7ExtQ+x0x8/MByM8Q7F6+3g0oHP1LZlfZre9DZAiub5DoE6Ud4CPRLou60DMx4sizw1Nl8zsCDmvE3p4y+fPA==",
+  "dgSpecHash": "91pDAVa30obk/GzdaKPORdx+7HqUH43g7Ec/FncwfZs92OReeMRCYrQ5woHHfMe+2xqKfHx3P6VCoLVXS0x9vg==",
   "success": true,
   "projectFilePath": "D:\\eigenproject git\\Containervervoer\\ContainerVervoer\\ContainerVervoer.Tests\\ContainerVervoer.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\marco\\.nuget\\packages\\coverlet.collector\\1.2.0\\coverlet.collector.1.2.0.nupkg.sha512",
+    "C:\\Users\\marco\\.nuget\\packages\\fleck\\1.1.0\\fleck.1.1.0.nupkg.sha512",
     "C:\\Users\\marco\\.nuget\\packages\\microsoft.codecoverage\\16.5.0\\microsoft.codecoverage.16.5.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.csharp\\4.0.1\\microsoft.csharp.4.0.1.nupkg.sha512",
     "C:\\Users\\marco\\.nuget\\packages\\microsoft.net.test.sdk\\16.5.0\\microsoft.net.test.sdk.16.5.0.nupkg.sha512",

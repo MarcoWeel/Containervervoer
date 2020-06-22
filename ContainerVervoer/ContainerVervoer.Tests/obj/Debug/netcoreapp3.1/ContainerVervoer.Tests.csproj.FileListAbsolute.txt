@@ -85,7 +85,6 @@ D:\eigenproject git\Containervervoer\ContainerVervoer\ContainerVervoer.Tests\bin
 D:\eigenproject git\Containervervoer\ContainerVervoer\ContainerVervoer.Tests\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
 D:\eigenproject git\Containervervoer\ContainerVervoer\ContainerVervoer.Tests\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
 D:\eigenproject git\Containervervoer\ContainerVervoer\ContainerVervoer.Tests\obj\Debug\netcoreapp3.1\ContainerVervoer.Tests.csprojAssemblyReference.cache
-D:\eigenproject git\Containervervoer\ContainerVervoer\ContainerVervoer.Tests\obj\Debug\netcoreapp3.1\ContainerVervoer.Tests.csproj.CoreCompileInputs.cache
 D:\eigenproject git\Containervervoer\ContainerVervoer\ContainerVervoer.Tests\obj\Debug\netcoreapp3.1\ContainerVervoer.Tests.AssemblyInfoInputs.cache
 D:\eigenproject git\Containervervoer\ContainerVervoer\ContainerVervoer.Tests\obj\Debug\netcoreapp3.1\ContainerVervoer.Tests.AssemblyInfo.cs
 D:\eigenproject git\Containervervoer\ContainerVervoer\ContainerVervoer.Tests\obj\Debug\netcoreapp3.1\ContainerVervoer.Tests.csproj.CopyComplete
