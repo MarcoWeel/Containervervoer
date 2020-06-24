@@ -16,6 +16,10 @@ namespace ContainerVervoer
         private Ship ship;
         private List<Container> containers;
         private int weight = 0;
+        private int normalContainers = 0;
+        private int valuableContainers = 0;
+        private int coolableContainers = 0;
+        private int coolableAndValuableContainers = 0;
         FleckWebSocketServer webSocketServer; 
         public Form1()
         {
@@ -32,6 +36,27 @@ namespace ContainerVervoer
                 LBContainers.Items.Add(new Container(Convert.ToInt32(NumericWeight.Value), (ContainerVariant)CBType.SelectedItem));
                 containers.Add(new Container((int)NumericWeight.Value, (ContainerVariant)CBType.SelectedItem));
                 weight += Convert.ToInt32(NumericWeight.Value);
+                if ((ContainerVariant)CBType.SelectedItem == ContainerVariant.Normal)
+                {
+                    normalContainers++;
+                    LBLNormalContainers.Text = "Normal: " + normalContainers;
+                }
+                else if ((ContainerVariant)CBType.SelectedItem == ContainerVariant.Coolable)
+                {
+                    coolableContainers++;
+                    LBLCoolableContainers.Text = "Coolable: " + coolableContainers;
+                }
+                else if ((ContainerVariant)CBType.SelectedItem == ContainerVariant.Valuable)
+                {
+                    valuableContainers++;
+                    LBLValuableContainer.Text = "Valuable: " + valuableContainers;
+                }
+                else
+                {
+                    coolableAndValuableContainers++;
+                    LBLCoolableAndValuableContainers.Text = "Coolable and valuable: " + coolableAndValuableContainers;
+                }
+
             }
             LBLContainerWeight.Text = "Container gewicht: " + weight;
         }

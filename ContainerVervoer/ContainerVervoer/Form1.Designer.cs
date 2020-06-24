@@ -47,6 +47,10 @@
             this.NumericContainerAmount = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.LBLValuableContainer = new System.Windows.Forms.Label();
+            this.LBLCoolableContainers = new System.Windows.Forms.Label();
+            this.LBLCoolableAndValuableContainers = new System.Windows.Forms.Label();
+            this.LBLNormalContainers = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.NumericWeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumericLength)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumericWidth)).BeginInit();
@@ -263,11 +267,51 @@
             this.label5.TabIndex = 18;
             this.label5.Text = "hoeveel containers";
             // 
+            // LBLValuableContainer
+            // 
+            this.LBLValuableContainer.AutoSize = true;
+            this.LBLValuableContainer.Location = new System.Drawing.Point(346, 318);
+            this.LBLValuableContainer.Name = "LBLValuableContainer";
+            this.LBLValuableContainer.Size = new System.Drawing.Size(79, 17);
+            this.LBLValuableContainer.TabIndex = 19;
+            this.LBLValuableContainer.Text = "Valuable: 0";
+            // 
+            // LBLCoolableContainers
+            // 
+            this.LBLCoolableContainers.AutoSize = true;
+            this.LBLCoolableContainers.Location = new System.Drawing.Point(346, 301);
+            this.LBLCoolableContainers.Name = "LBLCoolableContainers";
+            this.LBLCoolableContainers.Size = new System.Drawing.Size(79, 17);
+            this.LBLCoolableContainers.TabIndex = 20;
+            this.LBLCoolableContainers.Text = "Coolable: 0";
+            // 
+            // LBLCoolableAndValuableContainers
+            // 
+            this.LBLCoolableAndValuableContainers.AutoSize = true;
+            this.LBLCoolableAndValuableContainers.Location = new System.Drawing.Point(346, 284);
+            this.LBLCoolableAndValuableContainers.Name = "LBLCoolableAndValuableContainers";
+            this.LBLCoolableAndValuableContainers.Size = new System.Drawing.Size(164, 17);
+            this.LBLCoolableAndValuableContainers.TabIndex = 21;
+            this.LBLCoolableAndValuableContainers.Text = "Coolable and valuable: 0";
+            // 
+            // LBLNormalContainers
+            // 
+            this.LBLNormalContainers.AutoSize = true;
+            this.LBLNormalContainers.Location = new System.Drawing.Point(346, 267);
+            this.LBLNormalContainers.Name = "LBLNormalContainers";
+            this.LBLNormalContainers.Size = new System.Drawing.Size(69, 17);
+            this.LBLNormalContainers.TabIndex = 22;
+            this.LBLNormalContainers.Text = "Normal: 0";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.LBLNormalContainers);
+            this.Controls.Add(this.LBLCoolableAndValuableContainers);
+            this.Controls.Add(this.LBLCoolableContainers);
+            this.Controls.Add(this.LBLValuableContainer);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.NumericContainerAmount);
@@ -319,6 +363,10 @@
         private System.Windows.Forms.NumericUpDown NumericContainerAmount;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label LBLValuableContainer;
+        private System.Windows.Forms.Label LBLCoolableContainers;
+        private System.Windows.Forms.Label LBLCoolableAndValuableContainers;
+        private System.Windows.Forms.Label LBLNormalContainers;
     }
 }
 
